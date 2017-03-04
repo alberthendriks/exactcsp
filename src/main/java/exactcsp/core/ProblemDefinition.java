@@ -66,7 +66,7 @@ public class ProblemDefinition {
 		int helper = matrix.newCol();
 		matrix.addRow(0, new int[] {a, b, helper, result}, new int[] {1, 1, 1, 2});
 		int helper2 = matrix.newCol();
-		matrix.addRow(0, new int[] {helper, helper2, result}, new int[] {1, 2, 1});
+		matrix.addRow(2, new int[] {a, b, helper2, result}, new int[] {1, 1, 2, 1});
 		return result;
 	}
 	
@@ -101,7 +101,7 @@ public class ProblemDefinition {
 			result[i] = r;
 			matrix.addRow(0, new int[] {a[i], b[i], helper, r}, new int[] {1, 1, 1, 2});
 			int helper2 = matrix.newCol();
-			matrix.addRow(0, new int[] {helper, helper2, r}, new int[] {1, 2, 1});
+			matrix.addRow(2, new int[] {a[i], b[i], helper2, r}, new int[] {1, 1, 2, 1});
 		}
 		return result;
 	}

@@ -31,6 +31,12 @@ public class ProblemDefinitionTest {
     @Captor
     ArgumentCaptor<int[]> values;
 
+    @Captor
+    ArgumentCaptor<int[]> vars2;
+
+    @Captor
+    ArgumentCaptor<int[]> values2;
+
     @Test
     public void testNewVar() {
         int[] var = problemDefinition.newVar(32, true);
@@ -64,11 +70,12 @@ public class ProblemDefinitionTest {
     public void testXorIntInt() {
         when(matrixMock.newCol()).thenReturn(5).thenReturn(6).thenReturn(7);
         problemDefinition.xor(3, 4);
-        verify(matrixMock, times(2)).addRow(eq(0), vars.capture(), values.capture());
+        verify(matrixMock, times(1)).addRow(eq(0), vars.capture(), values.capture());
+        verify(matrixMock, times(1)).addRow(eq(2), vars2.capture(), values2.capture());
         Assert.assertArrayEquals(new int[] {3,4,6,5}, vars.getAllValues().get(0));
         Assert.assertArrayEquals(new int[] {1,1,1,2}, values.getAllValues().get(0));
-        Assert.assertArrayEquals(new int[] {6,7,5}, vars.getAllValues().get(1));
-        Assert.assertArrayEquals(new int[] {1,2,1}, values.getAllValues().get(1));
+        Assert.assertArrayEquals(new int[] {3,4,7,5}, vars2.getAllValues().get(0));
+        Assert.assertArrayEquals(new int[] {1,1,2,1}, values2.getAllValues().get(0));
     }
 
     @Test
